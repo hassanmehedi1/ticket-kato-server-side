@@ -40,5 +40,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Ticket Kato app listening on port ${port}`)
+  console.log(`Ticket Kato server app listening on port ${port}`)
 })
