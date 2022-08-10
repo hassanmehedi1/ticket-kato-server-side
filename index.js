@@ -15,6 +15,7 @@ async function run() {
 
     await client.connect();
     const reviewsCollection = client.db('Ticket-Kato').collection('reviews');
+    const BusCollection = client.db('Ticket-Kato').collection('BusInfo');
     //reviews
     app.post('/reviews', async (req, res) => {
       const reviews = req.body;
@@ -25,9 +26,16 @@ async function run() {
       const query = {};
       const cursor = reviewsCollection.find(query);
       const reviews = (await cursor.toArray()).reverse();
-      console.log(reviews)
       res.send(reviews);
     });
+    // Bus Info By Shaharia
+    app.get('/busInfo',async(req,res)=>{
+      const query={}
+      const cursor=BusCollection.find(query);
+      const buses=await cursor.toArray()
+      res.send(buses);
+
+    })
   }
   finally {
   }
@@ -40,5 +48,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Ticket Kato app listening on port ${port}`)
+  console.log(`Ticket Kato server app listening on port ${port}`)
 })
